@@ -7,6 +7,10 @@
     </title>
     <link rel="stylesheet" href="/styles.css">
     <script src="https://cdn.jsdelivr.net/gh/nastyox/Rando.js@master/code/plain-javascript/2.0.0/rando-min.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favi/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favi/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favi/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <nav class="nav-bar">
@@ -20,7 +24,7 @@
         <span id="losses">0</span>
     </div>
     <div class="date">
-        <span>Date is: </span>
+        <span id="dateis">Date is: </span>
         <span id="date">00/00/0000</span>
     </div>
     <div class="container">
@@ -28,9 +32,9 @@
 
         <span id="name">Name</span>
 
-        <span class="expTxt">EXP: <span id="exp">EXP YR</span></span>
+        <span class="expTxt">EXP: <span id="expMonth">MONTH</span><span id="exp">EXP YR</span></span>
 
-        <span class="bdayTxt">DOB: <span id="bday">MONTH  <span id="bdayYr" class="bdayInfo">YEAR</span>  </span></span>
+        <span class="bdayTxt">DOB: <span id="bdayMonth">MONTH</span><span id="bday">YEAR</span></span>
     </div>
     <div class="buttons">
         <button id="accepted">Accept</button>
