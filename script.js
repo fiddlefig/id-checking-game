@@ -1,4 +1,14 @@
-// trying to turn the months into their index number so i can see if the index # is bigger than 11
+// trying to get randomIndex number into function so i can use it for calculations
+
+// expMonth = doc.getElementById('expMonth') // displays month string from months array
+
+// expMonth.textContent = randomMonth() // function that gives random number betweenn 0-11 then returns months[randomIndex]
+
+// expMonthTxt = expMonth.textContent
+
+// exMonthNumber = parseInt(expMonthTxt, 10) // turns text content of expMonth into a number
+
+// take randomindex going into month array and use it to compare it to currentDateM
 
 const ids = ['John', 'Cati', 'Austin', 'Piper', 'Lydia', 'Matt', 'Andy'];
 const months = ['JAN', 'FEB', 'MAR', "APR", 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
@@ -74,16 +84,16 @@ accepted.addEventListener('click', function () {
     let expYearNumber = parseInt(expTxt, 10); // turns exptxt into a number
     let dobNumber = parseInt(dobTxt, 10);  // changes dobtxt into a number
 
-    if (expYearNumber >= currentDateY) { // if exp is more than or = to 2023, pass
+    if (expYearNumber >= currentDateY) { // if exp Year is more than or = to 2023, pass
         console.log('year pass');
-        if (randomIndex >= currentDateM) {
+        if (randomIndex >= currentDateM) { // if expMonth randomindex is >= 11 pass
             wCount++
             wins.textContent = wCount
             currentPerson++
             console.log('year and month pass');
         }
         else {
-            console.log(expMonthNumber, currentDateM);
+            console.log(randomIndex, currentDateM);
             console.log('year pass/month fail');
             lCount++
             losses.textContent = lCount

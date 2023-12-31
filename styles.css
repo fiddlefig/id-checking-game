@@ -77,8 +77,8 @@ body {
 }
 #pic {
     width: 100%;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
     overflow: hidden;
     border-bottom: 5px solid black;
     border-right: 5px solid black;;
