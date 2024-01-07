@@ -1,23 +1,11 @@
-// trying to get randomIndex number into function so i can use it for calculations
-
-// expMonth = doc.getElementById('expMonth') // displays month string from months array
-
-// expMonth.textContent = randomMonth() // function that gives random number betweenn 0-11 then returns months[randomIndex]
-
-// expMonthTxt = expMonth.textContent
-
-// exMonthNumber = parseInt(expMonthTxt, 10) // turns text content of expMonth into a number
-
-// take randomindex going into month array and use it to compare it to currentDateM
-
-const ids = ['John', 'Cati', 'Austin', 'Piper', 'Lydia', 'Matt', 'Andy'];
+const ids = ['John', 'Cati', 'Austin', 'Piper', 'Lydia', 'Matt', 'Andy', 'Mariela', 'Elena', 'Victoria', 'Jayden', 'Jesse'];
 const months = ['JAN', 'FEB', 'MAR', "APR", 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
-const wins = document.getElementById('wins'); //done
-const losses = document.getElementById('losses'); //done
-const currentDate = document.getElementById('date'); //done
+const wins = document.getElementById('wins'); 
+const losses = document.getElementById('losses'); 
+const currentDate = document.getElementById('date'); 
 
-const name = document.getElementById('name'); //done
+const name = document.getElementById('name'); 
 const exp = document.getElementById('exp');
 const bday = document.getElementById('bday');
 const pic = document.getElementById('pic');
@@ -52,7 +40,7 @@ function randoYr () { // random year
     return rando(1990, 2003);
 }
 function randoExp () { // random exp yr
-     return rando(2018, 2028);
+     return rando(2020, 2025);
 }
 function randoName () { // random index number for names
     return rando(0, 6);
@@ -69,11 +57,7 @@ function displayPerson () { // displays person on card
     bdayMonth.textContent = randomMonth2();
 }
 
-let sum = 0;
-// determines how old 
-function ageCalc () {
-    sum = currentDateY - dobNumberYr
-}
+
 //functionality for buttons
 accepted.addEventListener('click', function () { 
     let expTxt = exp.textContent; // changes exp text content into variable
@@ -84,20 +68,24 @@ accepted.addEventListener('click', function () {
     let expYearNumber = parseInt(expTxt, 10); // turns exptxt into a number
     let dobNumber = parseInt(dobTxt, 10);  // changes dobtxt into a number
 
-    if (expYearNumber >= currentDateY) { // if exp Year is more than or = to 2023, pass
-        console.log('year pass');
-        if (randomIndex >= currentDateM) { // if expMonth randomindex is >= 11 pass
+    if (expYearNumber > currentDateY) { // if exp Year is more than or = to 2023, pass
+        wCount++
+        wins.textContent = wCount
+        currentPerson++
+        console.log('exp year more than 2023 auto pass');
+    }
+    else if (expYearNumber == currentDateY) {
+        if (randomIndex >= currentDateM) {
             wCount++
             wins.textContent = wCount
             currentPerson++
-            console.log('year and month pass');
+            console.log('year was equal to 2023 and month was >= 11');
         }
-        else {
-            console.log(randomIndex, currentDateM);
-            console.log('year pass/month fail');
+        else if (randomIndex < currentDateM) {
             lCount++
             losses.textContent = lCount
             currentPerson++
+            console.log('year was equal to 2023 but month was less than 11');
         }
     }
     else {
@@ -105,11 +93,13 @@ accepted.addEventListener('click', function () {
         lCount++
         losses.textContent = lCount
         currentPerson++
+        console.log('year was less than 2023');
     }
-   
-    displayPerson()
+    scoreColor1();
+    displayPerson();
+    scoreColor2();
 })
-console.log(exp.textContent);
+
 
 deny.addEventListener('click', function () {
     let expTxt = exp.textContent;
@@ -118,20 +108,42 @@ deny.addEventListener('click', function () {
     let expMonthNumber = parseInt(expMonthTxt, 10);
     let expNumber = parseInt(expTxt, 10);
     let dobNumber = parseInt(dobTxt, 10);
-    if (expNumber < currentDateY) {
+    if (expNumber < currentDateY) { // if expNumber is less than current year- win
         wCount++
         wins.textContent = wCount;
         currentPerson++;
-        
+        console.log('exp year less than 2023 auto pass');
+    }
+    else if (expNumber == currentDateY) {
+        if (randomIndex <= currentDateM) {
+            wCount++
+            wins.textContent = wCount;
+            currentPerson++
+            console.log('year was = to 2023 and month was >= 11');
+        }
+        else if (randomIndex < currentDateM) {
+            lCount++
+            losses.textContent = lCount;
+            currentPerson++
+            console.log('year = 2023 but month was < 11');
+        }
+        else {
+            lCount++
+            losses.textContent = lCount;
+            currentPerson++
+            console.log('?');
+        }
     }
     else {
         lCount++
         losses.textContent = lCount;
         currentPerson++
+        console.log('year less than 2023');
     }
     displayPerson();
     endGame();
-    scoreColor();
+    scoreColor1();
+    scoreColor2();
 })
 
 
@@ -146,11 +158,18 @@ function endGame () {
 }
 
 
-function scoreColor() { // not working, supposed to change the color of the score numbers
-    let winsTxt = wins;
-    let winsNumber = parseInt(winsTxt, 10)
-    if (winsNumber > 0) {
-        winsNumber.style.color = 'green';
+function scoreColor1() {
+    let winTxt = wins.textContent;
+    let winNumber = parseInt(winTxt, 10);
+    if (winNumber > 0) {
+        document.getElementById('wins').style.color = "green"
+    }
+}
+function scoreColor2() {
+    let lossTxt = losses.textContent;
+    let lossNumber = parseInt(lossTxt, 10)
+    if (lossNumber > 0 ) {
+        document.getElementById('losses').style.color = 'red'
     }
 }
 
