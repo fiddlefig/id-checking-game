@@ -1,2 +1,1 @@
-This is an ID checking game I am creating. You are supposed to determine if the person is over 21 and the ID is not expired.
-It is missing some functionality as I am still working on it
+This is an ID checking game I have built with HTML, CSS, and JavaScript. You are given a randomized ID and you need to determine if the person can be let in depending on their ID's expiration date and birthday!
