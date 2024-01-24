@@ -13,36 +13,70 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
-    <nav class="nav-bar">
-        <span>Accepted and Denied</span>
-    </nav>
-    <div class="counters">
-        <span>Wins:</span>
-        <span id="wins">0</span>
 
-        <span>Losses:</span>
-        <span id="losses">0</span>
+    <div id="startScreen">
+        <div class="start">
+            <h1>ACCEPTED AND DENIED</h1>
+            <button id="startBtn">Start Checking</button>
+        </div>
+        <div class="socials">
+            <ul>
+                <li><a href="https://github.com/fiddlefig"><img class="socialimg" src="/img/github-mark-white.png" alt=""></a></li>
+                <li><a href="https://www.linkedin.com/in/sadaja-r-953a30208/"><img class="socialimg" src="/img/LI-In-Bug.png" alt=""></a></li>
+                <li><a href="https://twitter.com/3pb4nd"><img class="socialimg" src="/img/twitter.png" alt=""></a></li>
+            </ul>
+        </div>
+        <footer>
+            <span>Created By Sadaja Riddick-Johnson</span>
+        </footer>
     </div>
-    <div class="date">
-        <span id="dateis">Date is: </span>
-        <span id="date">00/00/0000</span>
-    </div>
-    <div class="container">
-        <span id="pic"><img src="https://steamuserimages-a.akamaihd.net/ugc/2046369901408908980/9AFC539A626AB29D29BF96FDE82FAE83F9AE3CA7/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt=""></span>
 
-        <span id="name">Name</span>
-
-        <span class="expTxt">EXP: <span id="expMonth">MONTH</span><span id="exp">EXP YR</span></span>
-
-        <span class="bdayTxt">DOB: <span id="bdayMonth">MONTH</span><span id="bday">YEAR</span></span>
+    <div id="gameover">
+        <div class="gameovertxt">
+            <span id="go">game over</span>
+            <span id="go2">you messed up too many times! you're fired!</span>
+        </div>
+        
+        <div class="startoverBtn">
+            <button id="startover">Start Over?</button>
+        </div>
+        
     </div>
-    <div class="buttons">
-        <button id="accepted">Accept</button>
-        <button id="deny">Deny</button>
+<!-- end new -->
+    <div id="game">
+        <nav class="nav-bar">
+            <span>Accepted and Denied</span>
+        </nav>
+        <div class="counters">
+            <span>Wins:</span>
+            <span id="wins">0</span>
+    
+            <span>Losses:</span>
+            <span id="losses">0</span>
+        </div>
+        <div class="date">
+            <span id="dateis">Date is: </span>
+            <span id="date">00/00/0000</span>
+        </div>
+        <div class="container">
+            <span id="pic"><img src="https://steamuserimages-a.akamaihd.net/ugc/2046369901408908980/9AFC539A626AB29D29BF96FDE82FAE83F9AE3CA7/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt=""></span>
+
+            <div class="names">
+                <span id="name">Name</span>
+                <span id="lastname">LastName</span>
+            </div>
+            
+    
+            <span class="expTxt">EXP: <span id="expMonth">MONTH</span><span id="exp">EXP YR</span></span>
+    
+            <span class="bdayTxt">DOB: <span id="bdayMonth">MONTH</span><span id="bday"></span></span>
+        </div>
+        <div class="buttons">
+            <button class="btn" id="accepted">Accept</button>
+            <button class="btn" id="deny">Deny</button>
+        </div>
     </div>
-    <!-- <div class="start">
-        <button id="start">Start Game</button>
-    </div> -->
+
     
 
 

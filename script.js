@@ -1,4 +1,5 @@
 const ids = ['John', 'Cati', 'Austin', 'Piper', 'Lydia', 'Matt', 'Andy', 'Mariela', 'Elena', 'Victoria', 'Jayden', 'Jesse'];
+const lastnames = ['johnson', 'white', 'heaton', 'burton', 'parks', 'bowen', 'miller', 'mark', 'rehmels']
 const months = ['JAN', 'FEB', 'MAR', "APR", 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
 const wins = document.getElementById('wins'); 
@@ -6,19 +7,36 @@ const losses = document.getElementById('losses');
 const currentDate = document.getElementById('date'); 
 
 const name = document.getElementById('name'); 
+const lastname = document.getElementById('lastname');
 const exp = document.getElementById('exp');
-const bday = document.getElementById('bday');
+const bdayYr = document.getElementById('bday'); // bday year
 const pic = document.getElementById('pic');
 const bdayMonth = document.getElementById('bdayMonth');
 const expMonth = document.getElementById('expMonth');
 
 const accepted = document.getElementById('accepted')
 const deny = document.getElementById('deny');
-const start = document.getElementById('start');
 
-currentDate.textContent = ' DEC 2023'
-let currentDateM = 11
-let currentDateY  = 2023
+document.getElementById('game').style.display = 'none';
+document.getElementById('gameover').style.display = 'none';
+// start and came over buttons
+startBtn.addEventListener('click', function() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('game').style.display = 'block'
+    document.getElementById('gameover').style.display = 'none';
+    displayPerson();
+})
+
+gameover.addEventListener('click', function() {
+    document.getElementById('gameover').style.display = 'none'
+    document.getElementById('game').style.display = 'block';
+    document.getElementById('startScreen').style.display = 'none'
+    displayPerson();
+})
+
+currentDate.textContent = ' JAN 2024'
+let currentDateM = 1
+let currentDateY  = 2024
 
 let wCount = 0;
 let lCount = 0; 
@@ -32,124 +50,141 @@ function randomMonth () { //gives random index number for months array
     randomIndex = Math.floor(Math.random() * 11);
     return months[randomIndex];
 }
+let randomIndex2;
 function randomMonth2() {
-    let randomIndex2 = rando(months.length - 1);
+    randomIndex2 = rando(months.length - 1);
     return months[randomIndex2]
 }
 function randoYr () { // random year
-    return rando(1990, 2003);
+    let randomYear = rando(1998, 2006);
+    return randomYear; 
 }
 function randoExp () { // random exp yr
      return rando(2020, 2025);
 }
 function randoName () { // random index number for names
-    return rando(0, 6);
+    return rando(0, 11);
 }
-
-
-
+function randomLastName () {
+    return rando(0, 8);
+}
 
 function displayPerson () { // displays person on card
     name.textContent = ids[randoName()];
+    lastname.textContent = lastnames[randomLastName()];
     exp.textContent =  randoExp();
     expMonth.textContent = randomMonth();
-    bday.textContent = randoYr();
+    bdayYr.textContent = randoYr();
     bdayMonth.textContent = randomMonth2();
 }
 
 
-//functionality for buttons
-accepted.addEventListener('click', function () { 
-    let expTxt = exp.textContent; // changes exp text content into variable
-    let dobTxt = bday.textContent; // changes dob text into variable
-    let expMonthTxt = expMonth.textContent; // changes expMonth text content into a variable
-
-    let expMonthNumber = parseInt(expMonthTxt, 10); // changes expmonthtxt into a number
-    let expYearNumber = parseInt(expTxt, 10); // turns exptxt into a number
-    let dobNumber = parseInt(dobTxt, 10);  // changes dobtxt into a number
-
-    if (expYearNumber > currentDateY) { // if exp Year is more than or = to 2023, pass
-        wCount++
-        wins.textContent = wCount
-        currentPerson++
-        console.log('exp year more than 2023 auto pass');
-    }
-    else if (expYearNumber == currentDateY) {
-        if (randomIndex >= currentDateM) {
-            wCount++
-            wins.textContent = wCount
-            currentPerson++
-            console.log('year was equal to 2023 and month was >= 11');
-        }
-        else if (randomIndex < currentDateM) {
-            lCount++
-            losses.textContent = lCount
-            currentPerson++
-            console.log('year was equal to 2023 but month was less than 11');
-        }
-    }
-    else {
-        console.log('expired');
-        lCount++
-        losses.textContent = lCount
-        currentPerson++
-        console.log('year was less than 2023');
-    }
-    scoreColor1();
-    displayPerson();
-    scoreColor2();
+accepted.addEventListener('click', function() {
+    game('accept');
+})
+deny.addEventListener('click', function() {
+    game('deny');
 })
 
 
-deny.addEventListener('click', function () {
-    let expTxt = exp.textContent;
-    let expMonthTxt = expMonth.textContent;
-    let dobTxt = bday.textContent;
-    let expMonthNumber = parseInt(expMonthTxt, 10);
-    let expNumber = parseInt(expTxt, 10);
-    let dobNumber = parseInt(dobTxt, 10);
-    if (expNumber < currentDateY) { // if expNumber is less than current year- win
-        wCount++
-        wins.textContent = wCount;
-        currentPerson++;
-        console.log('exp year less than 2023 auto pass');
-    }
-    else if (expNumber == currentDateY) {
-        if (randomIndex <= currentDateM) {
-            wCount++
-            wins.textContent = wCount;
-            currentPerson++
-            console.log('year was = to 2023 and month was >= 11');
+function game(action) {
+    let bdayYrTxt = bdayYr.textContent;
+    let expYrTxt = exp.textContent;
+
+    let expYrNumber = parseInt(expYrTxt, 10);
+    let dobYrNumber = parseInt(bdayYrTxt, 10);
+
+    let ageYrCalc = currentDateY - dobYrNumber;
+
+    if (action == 'accept') {
+        if (expYrNumber > currentDateY) { 
+            if (ageYrCalc > 21) { 
+                scoreUp()
+            }
+            else if (ageYrCalc === 21) {
+                if (randomIndex2 >= currentDateM) {
+                    scoreUp()
+                }
+                else {
+                    scoreDown()
+                }
+            }
+            else {
+                scoreDown()
+            }
         }
-        else if (randomIndex < currentDateM) {
-            lCount++
-            losses.textContent = lCount;
-            currentPerson++
-            console.log('year = 2023 but month was < 11');
+        else if (expYrNumber === currentDateY) {
+            if (randomIndex >= currentDateM) {
+                scoreUp()
+            }
+            else {
+                scoreDown()
+            }
         }
         else {
-            lCount++
-            losses.textContent = lCount;
-            currentPerson++
-            console.log('?');
+            scoreDown()
+        }
+
+    }
+    else if (action === 'deny') {
+        if (expYrNumber > currentDateY) { // if exp year more than 2024
+            if (ageYrCalc > 21) { // if bday yr more than 21
+                scoreDown()
+                console.log(1);
+            }
+            else if (ageYrCalc === 21) { //  if 2024-dobyr = 21
+                if (randomIndex2 >= currentDateM) { //if bday month >= 1
+                    scoreDown()
+                    console.log(2);
+                }
+                else {
+                    scoreUp()
+                    console.log(3);
+                }
+            }
+            else {
+                scoreUp()
+                console.log(4); //works
+            }
+        }
+        else if (expYrNumber === currentDateY) {
+            if (randomIndex >= currentDateM) {
+                scoreUp()
+                console.log(5);
+            }
+            else {
+                scoreUp()
+                console.log(6);
+            }
+        }
+        else {
+            scoreUp()
+            console.log(7); //works
         }
     }
-    else {
-        lCount++
-        losses.textContent = lCount;
-        currentPerson++
-        console.log('year less than 2023');
-    }
-    displayPerson();
+    displayPerson()
     endGame();
     scoreColor1();
     scoreColor2();
-})
 
+    
+}
+
+function scoreUp() {
+    wCount++
+    wins.textContent = wCount;
+    currentPerson++;
+}
+function scoreDown() {
+    lCount++
+    losses.textContent = lCount;
+    currentPerson++;
+}
 
 function endGame () { 
     if (lCount === 3) {
-        alert('You have denied too many people! you are fired!!!')
+        document.getElementById('game').style.display = 'none';
+        document.getElementById('gameover').style.display = 'block';
         lCount = 0;
         wCount = 0;
         wins.textContent = wCount;
@@ -172,8 +207,6 @@ function scoreColor2() {
         document.getElementById('losses').style.color = 'red'
     }
 }
-
-
 
 
 

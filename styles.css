@@ -67,15 +67,23 @@ body {
     font-size: 35px;
 }
 
+.names {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-
-#name {
+#name, #lastname {
     padding: 10px;
     font-size: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
+
 #pic {
     width: 100%;
     border-top-left-radius: 25px;
@@ -85,7 +93,7 @@ body {
     border-right: 5px solid black;;
 }
 
-button {
+.btn {
     padding: 30px;
     width: 200px;
     font-size: 30px;
@@ -128,16 +136,124 @@ button {
     width: 300px;
     height: 140px;
 }
-.start {
+/* .start {
     width: 400px;
     padding: 0;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     padding-top: 30px;
-}
+} */
 #start {
     width: 300px;
     border-radius: 30px;
     border: none;
+}
+
+/* start screen */
+.start-screen {
+    background-color: #808080;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+@font-face {
+    font-family: 'pixel';
+    src: url(/font/pixel-digivolve-font/pixel.ttf);
+}
+.start {
+    width: 30%;
+    margin: 290px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'pixel';
+}
+h1 {
+    font-size: 50px;
+}
+#startBtn {
+    color: black;
+    background-color: purple;
+    width: 300px;
+    height: 100px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'pixel';
+    font-size: 30px;
+
+}
+#startBtn:hover {
+    color: white;
+}
+.socials {
+    width: 350px;
+    margin: auto;
+    margin-top: 400px;
+}
+
+.socials ul{
+    list-style: none;
+}
+.socials ul li {
+    display: inline;
+    padding: 20px;
+}
+.socialimg {
+    width: 50px;
+}
+footer {
+    width: 500px;
+    margin: 70px auto;
+    font-family: 'pixel';
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+/* gameover screen */
+#gameover {
+    background-color: #5f5f5f;
+    width: 100%;
+    height: 800px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top: 300px;
+}
+@font-face {
+    font-family: 'pixel';
+    src: url(/font/pixel-digivolve-font/pixel.ttf);
+}
+
+.gameovertxt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'pixel';
+    
+}
+#go {
+    font-size: 80px;
+    padding-bottom: 40px;
+    color: rgb(121, 20, 20)
+}
+#go2 {
+    font-size: 40px;
+}
+#startover {
+    width: 300px;
+    height: 90px;
+    border-radius: 20px;
+    border: none;
+    margin-top: 50px;
+    color: black;
+    background-color: purple;
+    font-family: 'pixel';
+    font-size: 30px;
+    cursor: pointer;
+}
+#startover:hover {
+    color: white
 }
